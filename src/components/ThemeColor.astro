@@ -1,0 +1,20 @@
+<script>
+	function getQueryParam(param: string) {
+		const urlParams = new URLSearchParams(window.location.search);
+		return urlParams.get(param);
+	}
+
+	function updateDataTheme(dataTheme: string) {
+		document.body.setAttribute("data-theme", dataTheme);
+		localStorage.setItem("data-theme", dataTheme);
+	}
+
+	// Run on page load
+	window.addEventListener("DOMContentLoaded", () => {
+		const dataThemeQuery = getQueryParam("color");
+		const dataTheme = dataThemeQuery || localStorage.getItem("data-theme");
+		if (dataTheme) {
+			updateDataTheme(dataTheme);
+		}
+	});
+</script>

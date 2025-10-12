@@ -1,0 +1,142 @@
+---
+import { THEMES } from "@/constants/theme";
+import Theme from "@/icons/themeSwitch.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<div class="no-print inline-flex items-center">
+	<!-- <div class="flex items-center gap-1">
+		<Theme />
+		<select name="themeSwitch" id="themeSwitch" class="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 dark:text-gray-100 dark:ring-gray-700 sm:text-sm sm:leading-6">
+			<option value=THEMES.system>System</option>
+			<option value=THEMES.dark>Dark</option>
+			<option value=THEMES.light>Light</option>
+		</select>
+	</div> -->
+
+	<div class="group/theme flex items-center gap-2">
+		<label
+			for="themeSwitch"
+			class="flex items-center gap-1 text-sm font-medium leading-6 text-skin-base transition-transform ease-in-out group-hover/theme:rotate-45"
+		>
+			<span id="iconContainer">
+				<Theme />
+			</span></label
+		>
+		<select
+			id="themeSwitch"
+			name="themeSwitch"
+			class="block w-full rounded-md border-[1px] border-solid border-skin-muted py-1.5 pl-3 pr-10 text-skin-base ring-1 ring-skin-muted hover:border-skin-hue focus:border-skin-hue focus:ring-2 focus:ring-skin-hue sm:text-sm sm:leading-6"
+		>
+			<option value={THEMES.system} class="text-black">System</option>
+			<option value={THEMES.dark} class="text-black">Dark</option>
+			<option value={THEMES.light} class="text-black">Light</option>
+		</select>
+	</div>
+
+	<button
+		type="button"
+		class="no-print footer-button group ml-4 flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border-[1px] border-solid border-skin-hue text-skin-hue hover:bg-skin-button-accent hover:text-skin-inverted max-sm:hidden [&>span]:hover:text-skin-inverted"
+	>
+		<Icon name="mdi:apple-keyboard-command" class="h-5 w-5" />
+	</button>
+
+	<style>
+		:global(.dark) {
+			color-scheme: dark;
+		}
+	</style>
+</div>
+
+<script>
+	import { THEMES } from "@/constants/theme";
+	import type { DarkModeTheme } from "@/types";
+
+	function getQueryParam(param: string) {
+		const urlParams = new URLSearchParams(window.location.search);
+		return urlParams.get(param);
+	}
+
+	const select = document.getElementById("themeSwitch") as HTMLSelectElement;
+	const themeQuery = getQueryParam("theme");
+	const theme = themeQuery || localStorage.getItem("theme");
+	if (themeQuery) {
+		saveTheme(themeQuery);
+	}
+	const getSystemTheme = () =>
+		window.matchMedia("(prefers-color-scheme: dark)").matches
+			? THEMES.dark
+			: THEMES.light;
+
+	function updateTheme(value: DarkModeTheme) {
+		const theme = value === THEMES.system ? getSystemTheme() : value;
+		document.documentElement.classList.remove(THEMES.light, THEMES.dark);
+		document.documentElement.classList.add(theme);
+	}
+
+	function updateThemeIcon(theme: DarkModeTheme) {
+		const iconContainer = document.getElementById("iconContainer");
+		if (!iconContainer) {
+			return;
+		}
+		iconContainer.innerHTML = "";
+		if (theme === THEMES.system) {
+			iconContainer.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun-moon"><path d="M12 8a2.83 2.83 0 0 0 4 4 4 4 0 1 1-4-4"></path><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.9 4.9 1.4 1.4"></path><path d="m17.7 17.7 1.4 1.4"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.3 17.7-1.4 1.4"></path><path d="m19.1 4.9-1.4 1.4"></path></svg>`;
+		}
+		if (theme === THEMES.dark) {
+			iconContainer.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
+		}
+		if (theme === THEMES.light) {
+			iconContainer.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`;
+		}
+	}
+	function saveTheme(value: string) {
+		localStorage.setItem("theme", value);
+	}
+
+	if (theme !== null) {
+		select.value = theme;
+	} else {
+		select.value = getSystemTheme();
+		updateTheme(getSystemTheme());
+	}
+
+	window
+		.matchMedia("(prefers-color-scheme: dark)")
+		.addEventListener("change", (event) => {
+			const theme = localStorage.getItem("theme");
+			if (theme !== THEMES.system) {
+				return;
+			}
+			const isDarkMode = event.matches;
+			updateTheme(isDarkMode ? THEMES.dark : THEMES.light);
+			updateThemeIcon(THEMES.system);
+		});
+
+	updateTheme(select.value as DarkModeTheme);
+
+	select.addEventListener("change", (event: Event) => {
+		const select = event.target as HTMLSelectElement;
+		updateTheme(select.value as DarkModeTheme);
+		updateThemeIcon(select.value as DarkModeTheme);
+		saveTheme(select.value);
+	});
+
+	// Deshabilitar modo oscuro al imprimir
+	window.addEventListener("beforeprint", () => {
+		document.documentElement.classList.remove(THEMES.dark);
+		document.documentElement.classList.add(THEMES.light);
+	});
+
+	// Restaurar el modo oscuro después de imprimir
+	window.addEventListener("afterprint", () => {
+		let theme: DarkModeTheme = THEMES.light;
+		if (
+			select.value === THEMES.dark ||
+			(select.value === THEMES.system && getSystemTheme() === THEMES.dark)
+		) {
+			theme = THEMES.dark;
+		}
+		updateTheme(theme);
+	});
+</script>

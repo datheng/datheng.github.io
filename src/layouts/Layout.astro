@@ -1,0 +1,147 @@
+---
+import { basics } from "@cv";
+import { env } from "@/env";
+import EasterEgg from "@/components/EasterEgg.astro";
+import ThemeColor from "@/components/ThemeColor.astro";
+import GoogleAnalytics from "@/components/GoogleAnalytics.astro";
+import QueryStringCleanup from "@/components/QueryStringCleanup.astro";
+import { DEFAULT_THEME } from "@/constants/theme";
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+
+const { picture, summary, url, theme } = basics;
+---
+
+<!doctype html>
+<html lang="en" class={`${DEFAULT_THEME} h-full`}>
+	<head>
+		<meta charset="UTF-8" />
+		<title>{title}</title>
+		<meta name="description" content={summary} />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="icon"
+			type="image/png"
+			href={env.PUBLIC_BASE_PATH + "/favicon.png"}
+		/>
+		{picture ? <link rel="preload" as="image" href={picture} /> : null}
+
+		<meta property="og:url" content={url} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={summary} />
+		<meta
+			property="og:image"
+			content={env.PUBLIC_BASE_PATH + "/open-graph.png-TODO"}
+		/>
+
+		<EasterEgg />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta property="twitter:domain" content={url?.split("//")[1] ?? ""} />
+		<meta property="twitter:url" content={url} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={summary} />
+		<meta name="twitter:image" content="" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+			rel="stylesheet"
+		/>
+
+		<link rel="stylesheet" href={env.PUBLIC_BASE_PATH + "/themes/themes.css"} />
+
+		{env.PUBLIC_GA_ID ? <GoogleAnalytics id={env.PUBLIC_GA_ID} /> : null}
+
+		<ThemeColor />
+		<QueryStringCleanup />
+	</head>
+	<body
+		data-theme={theme}
+		class="relative h-full bg-skin-fill text-skin-base print:bg-white"
+	>
+		<slot />
+
+		<style is:global>
+			html {
+				font-family: Inter, ui-sans-serif, system-ui, sans-serif,
+					"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+					"Noto Color Emoji";
+				font-optical-sizing: auto;
+				font-weight: normal;
+				font-style: normal;
+			}
+
+			body,
+			figure {
+				margin: 0;
+				padding: 0;
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+			}
+
+			h1,
+			h2,
+			h3,
+			h4 {
+				@apply text-skin-base;
+				margin: 0;
+			}
+
+			p {
+				@apply text-sm text-skin-muted;
+				line-height: 1.5;
+				text-wrap: pretty;
+			}
+
+			.print {
+				display: none !important;
+			}
+
+			.dev * {
+				@apply border border-red-500/50 bg-red-500/5;
+			}
+			#hotkeypad [data-backdrop] {
+				@apply !bg-zinc-800 !opacity-90;
+			}
+
+			@media print {
+				.no-print {
+					display: none !important;
+				}
+
+				.print {
+					display: block !important;
+				}
+
+				astro-dev-toolbar {
+					display: none !important;
+				}
+
+				article {
+					break-inside: avoid;
+				}
+			}
+		</style>
+	</body>
+</html>

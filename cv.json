@@ -1,0 +1,501 @@
+{
+	"basics": {
+		"name": "Datheng Wang",
+		"label": "DevOps Engineer | Cloud Engineer",
+		"email": "wmsisme@outlook.com",
+		"phone": "+86 13662242379",
+		"website": "https://datheng.github.com",
+		"url": "https://datheng.github.com",
+		"urlLastUpdated": "https://github.com/datheng/datheng.github.com/releases",
+		"picture-TODO": "",
+		"picture": "",
+		"image": "",
+		"theme": "default",
+		"summary": "Ambitious, passionate, and self-motivated Full Stack Developer with expertise in cloud computing and DevOps culture & practice, and cloud-native solutions, driven by challenges, growth, and innovation. Seeking opportunities to build impactful solutions and deliver value to businesses and users.",
+		"summaries": [
+			"Passionate, technology-driven, and self-motivated Full Stack Developer with expertise in cloud computing and DevOps culture & practice, and cloud-native solutions. My core mission is to transform systems into a highly resilient, self-healing entity through advanced architectural design, deep automation, and cutting-edge engineering practices.",
+			"Building 'unbreakable' systems and enjoy the thrill of solving complex challenges with technology"
+		],
+		"summaries_md": [
+			"**Passionate, technology-driven, and self-motivated Full Stack Developer** with expertise in cloud computing and **DevOps** culture & practice, and **cloud-native** solutions. My core mission is to transform systems into a highly resilient, self-healing entity through advanced architectural design, deep automation, and cutting-edge engineering practices.",
+			"Building **unbreakable** systems and enjoy the thrill of solving complex challenges with technology"
+		],
+		"location": {
+			"city": "Shenzhen, Guangodong Province",
+			"region": "China"
+		},
+		"profiles": [
+			{
+				"network": "GitHub",
+				"username": "datheng",
+				"url": "https://github.com/datheng",
+				"projects": "https://github.com/datheng#-things-ive-done-for-myself-but-may-be-helpful-for-others"
+			},
+			{
+				"network": "LinkedIn",
+				"username": "datheng",
+				"url": "https://linkedin.com/in/datheng"
+			},
+			{
+				"network": "Credly",
+				"username": "datheng",
+				"url": "https://www.credly.com/users/datheng/"
+			},
+			{
+				"network": "Website",
+				"username": "datheng.github.com"
+			},
+			{
+				"network": "CV",
+				"username": "CV",
+				"url": "https://datheng.github.com/DathengWang-CV.pdf"
+			},
+			{
+				"network": "Mindmap",
+				"username": "mindmap",
+				"url": "https://datheng.github.com/mindmap"
+			}
+		]
+	},
+	"work": [
+		{
+			"company": "Shenzhen Carrot IT Co., Ltd.",
+			"position": "System Architect",
+			"startDate": "2012-12",
+			"summary": "Passionate, technology-driven System Architect and Technical Director,  play a critical role in making applications and infrastructure services  Reliable, Visible, Resilience,  Self-healing  to stakeholders for daily operation, troubleshooting, performance analysis, capacity planning  through advanced architectural design, deep automation, and cutting-edge engineering practices.",
+			"summary_md": "Passionate, technology-driven System Architect and Technical Director,  play a critical role in making applications and infrastructure services  **Reliable**, **Visible**, **Resilience**,  **Self-healing**  to stakeholders for daily operation, troubleshooting, performance analysis, capacity planning  through advanced architectural design, deep automation, and cutting-edge engineering practices.",
+			"highlights": [
+				"Practical experience with Chaos Engineeringusing tools like Chaos Monkey, Chaos Knife, KubeInvaders, etc.",
+				"Hands-on experience with containerization(Docker) and container orchestration(Kubernetes/EKS).",
+				"Familiarity with Cl/CD pipelines and tools(e.g., Jenkins, GitLab Cl, AWS CodePipeline).",
+				"In-depth understanding of distributed systems, networking protocols, and system performance tuning.",
+				"Mentored a Frontend Developer and a Backend Developer, supporting their growth and technical skills",
+				"A relentless curiosity and passion for learning new technologies demonstrated through personal projects, technical blogs, open-source contributions, or community engagement.",
+				"Exceptional problem-solving skills, with the ability to remain calm and logical under pressure to resolve complex issues."
+			],
+			"responsibilities": [
+				"Architecture Design & Optimization: Spearhead the design, implementation, and optimization of High Availability (HA) and Disaster Recovery (DR) solutions across on-premise and public cloud environments, encompassing multi-AZ (Availability Zone) and multi-region architectures to eliminate single points of failure and ensure business continuity.",
+				"​Infrastructure as Code (IaC) Leadership: Champion and drive Infrastructure as Code (IaC) practices, leveraging tools such as Terraform, ARM templates, and AWS CloudFormation to automate, version-control, and ensure repeatable, idempotent provisioning of all infrastructure components, achieving consistency and efficiency.",
+				"​Observability & Monitoring Enhancement: Enhance system observability by establishing comprehensive metrics collection, alerting mechanisms, and centralized logging using platforms like Prometheus, Grafana, Alertmanager, and OpenSearch (ELK stack), enabling real-time performance analysis, proactive issue detection, and rapid troubleshooting.",
+				"Automation & Operational Efficiency: Develop robust automation scripts and tools using Ansible, Bash, and Python to eliminate manual, repetitive tasks, thereby streamlining operational workflows, accelerating incident response, and improving recovery times.",
+				"​Incident Management & Continuous Improvement: Participate in on-call rotations for critical incidents and lead blameless post-mortem processes to perform deep-dive root cause analysis, driving actionable insights and continuous improvement across systems and processes.",
+				"Software Engineering Principles & CI/CD: Apply strong software development domain knowledge, including design patterns, code structure, and programming languages, with expertise in continuous integration and deployment (CI/CD) pipelines using Git, GitHub/GitLab, Jenkins, and ArgoCD",
+				"Team Leadership & Mentorship: Lead and mentor a team of engineers, fostering a culture of collaboration, continuous learning, and professional growth, while ensuring alignment with organizational goals and technical excellence.",
+				"Communication & ITSM Integration: Possess excellent written and verbal communication skills, with experience in ITOM/ITSM integration, specifically ServiceNow ITOM for event management and operational intelligence, alongside strong people management capabilities.",
+				"DevOps & Modern Ops Practices: Maintain deep awareness and implementation expertise in DevOps, DevSecOps, GitOps, and AIOps strategies, fostering a culture of automation, collaboration, and continuous delivery."
+			],
+			"responsibilities_md": [
+				"**Architecture Design & Optimization**: Spearhead the design, implementation, and optimization of High Availability (HA) and Disaster Recovery (DR) solutions across on-premise and public cloud environments, encompassing multi-AZ (Availability Zone) and multi-region architectures to eliminate single points of failure and ensure business continuity.",
+				"**​Infrastructure as Code (IaC) Leadership**: Champion and drive Infrastructure as Code (IaC) practices, leveraging tools such as Terraform, ARM templates, and AWS CloudFormation to automate, version-control, and ensure repeatable, idempotent provisioning of all infrastructure components, _achieving consistency and efficiency_.",
+				"​**Observability & Monitoring Enhancement**: Enhance system observability by establishing comprehensive metrics collection, alerting mechanisms, and centralized logging using platforms like Prometheus, Grafana, Alertmanager, and OpenSearch (ELK stack), _enabling real-time performance analysis, proactive issue detection, and rapid troubleshooting_.",
+				"**Automation & Operational Efficiency**: Develop robust automation scripts and tools using Ansible, Bash, and Python to eliminate manual, repetitive tasks, _thereby streamlining operational workflows, accelerating incident response, and improving recovery times_.",
+				"**​Incident Management & Continuous Improvement**: Participate in on-call rotations for critical incidents and lead blameless post-mortem processes to perform deep-dive root cause analysis, _driving actionable insights and continuous improvement across systems and processes_.",
+				"**Software Engineering Principles & CI/CD**: Apply strong software development domain knowledge, including design patterns, code structure, and programming languages, with expertise in continuous integration and deployment (CI/CD) pipelines using Git, GitHub/GitLab, Jenkins, and ArgoCD",
+				"**Team Leadership & Mentorship**: Lead and mentor a team of engineers, fostering a culture of collaboration, continuous learning, and professional growth, while ensuring alignment with organizational goals and technical excellence.",
+				"**Communication & ITSM Integration**: Possess excellent written and verbal communication skills, with experience in ITOM/ITSM integration, specifically ServiceNow ITOM for event management and operational intelligence, alongside strong people management capabilities.",
+   			    "**DevOps & Modern Ops Practices**: Maintain deep awareness and implementation expertise in DevOps, DevSecOps, GitOps, and AIOps strategies, fostering a culture of automation, collaboration, and continuous delivery."
+			],
+			"achievements": [
+				"I successfully collaborated with geographically dispersed teams across different countries, adapting communication for time zone/cultural differences during critical incident resolutions.",
+				"Build a dual-active architecture with Azure and Alibaba Cloud to support daily processing of over 100,000 orders for the PO system",
+				"Build On Premise high availability k8s cluster, implement Kubernetes elastic scaling strategy, and ensure peak Pod startup latency is less than 500ms",
+				"Build Proxmox bare metal cluster to support millisecond scale scaling for over 100 containerized applications",
+				"Enhance system disaster recovery capability through Chaos Monkey drill, achieving zero business interruption throughout the year",
+				"Develop a microservice monitoring system based on Spring Cloud, with an average response time of less than 200ms",
+				"Implement Prometheus+ELK log analysis platform, improve fault localization efficiency by 80%",
+				"Design Argo CD continuous delivery assembly line to achieve 1000 daily fault free deployments",
+				"Standardized deployment through Helm Charts reduces environment consistency error rate by 90%",
+				"Implement GitOps practice, reduce configuration drift rate from 15%/week to 0.5%/month"
+
+
+			],
+			"achievements_md": [
+				"I successfully collaborated with geographically dispersed teams across different countries, adapting communication for time zone/cultural differences during critical incident resolutions.",
+				"Build a **dual-active architecture** with Azure and Alibaba Cloud to support daily processing of over 100,000 orders for the PO system",
+				"Build **On Premise high availability k8s cluster**, implement Kubernetes elastic scaling strategy, and ensure peak Pod startup latency is less than 500ms",
+				"Build **Proxmox bare metal cluster** to support millisecond scale scaling for over 100 containerized applications",
+				"Enhance system disaster recovery capability through Chaos Monkey drill, achieving zero business interruption throughout the year",
+				"Develop a microservice monitoring system based on Spring Cloud, with an average response time of less than 200ms",
+				"Implement **OpenTelemetry, Prometheus+Grafana+AlertManager and ELK log analysis platform**, improve fault localization efficiency by 80%",
+				"Design **Argo CD** continuous delivery assembly line to achieve 1000 daily fault free deployments",
+				"Standardized deployment through **Helm Charts** reduces environment consistency error rate by 90%",
+				"Implement **GitOps** practice, reduce configuration drift rate from 15%/week to 0.5%/month"
+			],
+			"skills": [
+				"Chaos Engineering",
+				"SRE",
+				"DevOps",
+				"CI/CD",
+				"GitOps",
+				"Linux",
+				"Docker",
+				"Kubernetes",
+				"Prometheus",
+				"OpenTelemetry",
+				"Grafana",
+				"Azure Cloud",
+				"AliYun Cloud",
+				"AWS",
+				"EKS",
+				"Jenkins",
+				"ArgoCD",
+				"HELM",
+				"Terraform",
+				"Ansible",
+				"Bash",
+				"Python",
+				"Java",
+				"Spring Boot",
+				"Spirng Cloud",
+				"ELK"
+			]		
+		},
+		{
+			"company": "Walmart (China) Investment Co., Ltd. - Home Office",
+			"position": "Manager - Server, Storage & Security",
+			"startDate": "2010-12",
+			"endDate": "2012-12",
+			"summary": "Collaborated with biz development team in China, co-worked with global teams , ensuring seamless alignment between business requirements and technical solutions, like  server operation, storage capacity, application deployment and SRE etc.",
+			"summary_md": "**Collaborated** with biz development team in China, co-worked with global teams , ensuring seamless alignment between business requirements and technical solutions, like  server operation, storage capacity, application deployment and SRE etc.",
+			"highlights": [
+				"Developed a CMS for a gaming system.",
+				"Developed and deployed a performance review system used by over 100 employees.",
+				"Migrated a legacy system from Docker Compose to Kubernetes.",
+				"Contributed to building the design system.",
+				"Mentored a Frontend Developer and a Backend Developer, supporting their growth and technical skills",
+				"Achievement: Promoted four times in two years — twice the usual pace — recognizing outstanding contributions."
+			],
+			"responsibilities": [
+				"Application Operational Management: Collaborated with development teams throughout the application lifecycle to ensure seamless deployment of new systems, maintaining production-grade quality and zero customer impact.",
+				"Change Management: Owned production environment governance under ITIL4 framework, enforcing compliance with Change Management, Incident Management, and Release Management policies.",
+				"Incident Management: Conducted proactive monitoring, root cause analysis, and resolution of production incidents, escalating to cross-functional teams when critical business continuity risks emerged.",
+				"Environment Patch Management: Executed systematic patching strategies to uphold security posture, ensuring 100% compliance with the latest vulnerability remediation protocols.",
+				"Mentored two Management Trainee, accelerating their technical growth and productivity."
+			],
+			"responsibilities_md": [
+				"**Application Operational Management**: Collaborated with development teams throughout the application lifecycle to ensure seamless deployment of new systems, maintaining production-grade quality and zero customer impact.",
+				"**Change Management**: Owned production environment governance under ITIL4 framework, enforcing compliance with Change Management, Incident Management, and Release Management policies.",
+				"**Incident Management**: Conducted proactive monitoring, root cause analysis, and resolution of production incidents, escalating to cross-functional teams when critical business continuity risks emerged.",
+				"**Environment Patch Management**: Executed systematic patching strategies to uphold security posture, ensuring 100% compliance with the latest vulnerability remediation protocols.",
+				"**Mentored** two Management Trainee, accelerating their technical _growth and productivity_."
+			],
+			"achievements": [
+				"Led the migration of a legacy system from traditional server system to virtulization system(VMware vSphere), Virtualization rate reaches 60%, boosting scalability and reliability.",
+				"Passed the certification of ISO27001 information security management requirements",
+				"Implement Hierarchical Storage Management(Include HDS SAN Storage System, IBM SAN Storage System, Dell iSCSI Storage System and  Net App NAS Storage System), Significantly reduce overall storage cost (TCO)"
+			],
+			"achievements_md": [
+				"Led the migration of a legacy system from traditional server system to **virtulization system**(VMware vSphere), Virtualization rate reaches 60%, boosting scalability and reliability.",
+				"Passed the certification of **ISO27001** information security management requirements",
+				"Implement **Hierarchical Storage Management**, Significantly reduce overall storage cost (TCO), Include HDS SAN Storage System, IBM SAN Storage System, Dell iSCSI Storage System and  Net App NAS Storage System"
+			],
+			"skills": [
+				"ITIL4",
+				"ISO 27001",
+				"TCO",
+				"Incident Management",
+				"Change Management",
+				"Security Patch Management",
+				"VMVare vSphere",
+				"SAN Storage",
+				"NAS Storage",
+				"iSCSI Storage",				
+				"Windows Server",
+				"Linux Server"
+			]
+		},
+		{
+			"company": "Li & Fung (Shenzhen) Co., Ltd.",
+			"position": "System Specialist",
+			"startDate": "2018-12",
+			"endDate": "2020-12",
+			"summary": "Work with the Dev team on Sourcing Platform (the major business system) Deployment, Operation and Maintenance, HA Server, network, storage system etc.",
+			"summary_md": "Work with the Dev team on **Sourcing Platform** (the major business system) Deployment, Operation and Maintenance, HA Server, network, storage system etc.",
+			"achievements": [
+				"For the Souceing Platform, overseeing the full infrastructure lifecycle—including server and storage selection, backup, and high-availability solutions—from design through daily monitoring. Collaborated closely with development teams to implement agile practices, enabling rapid, reliable iteration and accelerated version releases."
+			],
+			"achievements_md": [
+				"For the Souceing Platform, overseeing the full infrastructure lifecycle—including server and storage selection, backup, and high-availability solutions—from design through daily monitoring. Collaborated closely with development teams to implement agile practices, enabling rapid, reliable iteration and accelerated version releases."
+			]
+
+		},
+		{
+			"company": "RTSourcing Shenzhen Ltd.",
+			"position": "IT Manager (China)",
+			"startDate": "2018-12",
+			"endDate": "2000-04",
+			"summary": "During this time, the company grew from 50 to more than 500 people, and I also grew to the head of the company's IT department.",
+			"summary_md": "During this time, the company grew from 50 to more than 500 people, and I also grew to the head of the company's IT department.",
+			"achievements": [
+				" I built the company's IT system from scratch, including the network system, server system, storage system, security system, OA system, and business system. I also led a team to maintain the company's IT system and provide technical support to the company's employees."
+			],
+			"achievements_md": [
+				" I built the company's IT system from scratch, including the network system, server system, storage system, security system, OA system, and business system. I also led a team to maintain the company's IT system and provide technical support to the company's employees."
+			]
+
+		}
+	],
+	"education": [
+		{
+			"institution": "Zhejiang University",
+			"area": " Computer Science and Technology, B.S",
+			"startDate": "2011-09",
+			"endDate": "2015-02",
+			"highlights": [
+				"Essential theories and necessary expertise in computer science and information technology related principles by connecting computer theories with applications, connecting computer software with hardware, and connecting engineering methodology with technology."
+			]
+		},
+		{
+			"institution": "Guangdong University of Foreign Studies",
+			"area": "English Junior College",
+			"startDate": "2004-09",
+			"endDate": "2007-12",
+			"highlights": [
+				"Learn the foundations of composition, critical thinking, and research in this English degree program designed to immerse you in all areas of literature and language."
+			]
+		}
+	],
+	"certificates": [
+
+		{
+			"name": "MCSE",
+			"issuer": "Microsoft",
+			"date": "2001-12"
+		}
+	],
+	"projects": [
+		{
+			"name": "Kubernetes On Premise",
+			"description": "On-premises Kubernetes clusters can be isolated from the public cloud, reducing the risk of attacks. This setup also helps in meeting stringent regulatory and data privacy requirements, as data is stored and managed within the physical premises.",
+			"highlights": [
+				"Deploying Kubernetes on-premises offers significant benefits in terms of security, compliance, and cost-effectiveness but also presents challenges in scalability, management complexity, and networking."
+			],
+			"startDate": "2023-06",
+			"url": "",
+			"isActive": true,
+			"skills": ["Kubernetes", "Bare-Metal", "GlusterFS","Storage-NFS", "Storage-SMB",  "metallb", "cert-manager", "harbor", "ingress-nginx", "prometheus", "grafana", "OpenTelemetry", "fluentd"],
+			"hidden": false
+		},
+		{
+			"name": "Cloud-Native AI (Alibaba Cloud)",
+			"description": "Cloud-native AI provides a set of essential features and services to help clients to build an AI platform, accelerate AI workloads and simplify MLOps.",
+			"highlights": [
+				"A Kubernetes-based service in the modular and extensible architecture, accelerating the construction of the AI platforms and improving resource utilization and delivery efficiency."
+			],
+			"startDate": "2025-07",
+			"url": "",
+			"isActive": true,
+			"skills": [
+				"AliYun Cloud",
+				"Spring AI",
+				"Spring AI Alibaba",
+				"Agent",
+				"Nacos",
+				"Nacos A2A",
+				"Rocket MQ",
+				"AI Gateway",
+				"AI Runtime",
+				"AI Observability",
+				"MCP",
+				"Nacos MCP Registry",
+				"AI Security"
+			]
+		},
+		{
+			"name": "DevOps, DevSecOps",
+			"description": " integrates practices like Continuous Integration (CI), Continuous Delivery (CD), and automation to streamline the software development lifecycle.",
+			"highlights": [
+				"By adopting DevSecOps, organizations can achieve faster, more secure software delivery while fostering a culture of shared responsibility for security. This transformation is essential in today's fast-paced and threat-prone software development landscape."
+			],
+			"startDate": "2024-03",
+			"endDate": "2024-06",
+			"url": "https://app.it-bang.cn/tag/devops",
+			"isActive": true,
+			"skills": ["DevOps", "Jenkins", "ArgoCD", "Argo Workflows", "Argo Rollouts", "GitOps", "CI/CD", "Docker", "Kubernetes", "Helm", "Prometheus", "Grafana", "Loki", "OpenTelemetry", "ELK Stack"],
+			"hidden": false
+		},
+		{
+			"name": "Gitea: Git with a cup of tea Modern Open",
+			"description": "Great self-hosted option that brings teams and developers high-efficiency, but easy operations from planning to production.",
+			"highlights": [
+				"Gitea enables the creation and management of repositories based on Git. It also makes code review incredibly easy and convenient, enhancing code quality for users and businesses."
+			],
+			"startDate": "2023-02",
+			"url": "https://git.it-bang.cn/",
+			"github": "https://about.gitea.com/",
+			"isActive": true,
+			"skills": ["Git", "Gitea", "Gitea Actions", "CI/CD","Kubernetes", "Helm", "ingress-nginx", "cert-manager"],
+			"hidden": false
+		},
+		{
+			"name": "GitOps with ArgoCD",
+			"description": "Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.",
+			"highlights": [
+				"Application definitions, configurations, and environments should be declarative and version controlled. Application deployment and lifecycle management should be automated, auditable, and easy to understand."
+			],
+			"startDate": "2024-12",
+			"endDate": "2024-12",
+			"url": "https://argocd.it-bang.cn/",
+			"isActive": true,
+			"github": "https://argo-cd.readthedocs.io/en/stable/",
+			"skills": ["Helm", "ArgoCD", "Argo Rollouts", "Ansible", "GitOps", "Kubernetes", "Prometheus", "Grafana", "Alertmanager"]
+		},
+		{
+			"name": "SSO with Keycloak",
+			"description": "Keycloak is an open-source identity and access management solution that supports Single Sign-On (SSO) for web applications and RESTful services.",
+			"highlights": [
+				"Implement SSO with Keycloak, providing seamless authentication across your applications."
+			],
+			"startDate": "2024-12",
+			"endDate": "2025-05",
+			"url": "https://sso.it-bang.cn/",
+			"isActive": true,
+			"github": "https://github.com/keycloak/keycloak/",
+			"skills": ["SSO", "Keycloak", "OAuth 2.0", "OpenID Connect", "HELM", "Kubernetes", "GitHub", "Active Directory", "Azure Cloud"]
+		}
+	],
+	"skills": [
+		{
+			"name": "DevOps",
+			"keywords": [
+				"Git",
+				"Gitea",
+				"Docker",
+				"Kubernetes",
+				"bare metal k8s cluster", 
+				"ECK", "AKS", "GKS",
+				"Helm",
+				"Portainer",
+				"Harbor",
+				"Sonatype Nexus",
+				"Terraform",
+				"Ansible",
+				"Bash Script",
+				"CI/CD",
+				"Argo CD",
+				"Argo Workflows",
+				"Argo rollouts",
+				"Jenkins",
+				"GitLab CI/CD",
+				"GitHub Actions",
+				"Observability",
+				"Promitheus",
+				"Grafana",
+				"Loki",
+				"OpenTelemetry",
+				"ELK Stack",
+				"Elaticsearch",
+				"Logstash",
+				"Kibana",
+				"Fluentd"
+		
+			]
+		},
+		{
+			"name": "Cloud Computing",
+			"keywords": [
+				"AWS",
+				"Google Cloud",
+				"Azure Cloud",
+				"AliYun",
+				"Huawei Cloud"
+			]
+		},
+		{
+			"name": "Backend",
+			"keywords": [
+				"Java",
+				"Python",
+				"Microservices",
+				"Spring Boot",
+				"Spring Cloud",
+				"Spring Data JPA",
+				"Spring Security",
+				"Spring MVC",
+				"Spring AOP",
+				"Spring Cloud Gateway",
+				"Spring Cloud Alibaba",
+				"Spring AI",
+				"Spring AI Alibaba",
+				"MCP",
+				"REST"
+			]
+		},
+		{
+			"name": "Frontend",
+			"keywords": [
+				"Aastro Web Framework",
+				"WordPress",
+				"Angular",
+				"Vue.js",
+				"Vite",
+				"TypeScript",
+				"JavaScript",
+				"Bootstrap",
+				"NG-Alain",
+				"Tailwind CSS",
+				"CSS",
+				"HTML",
+				"SPA",
+				"SSG",
+				"SEO"
+			]
+		},
+		{
+			"name": "Database",
+			"keywords": ["SQL", "ORM", "JPA", "MySQL", "PostgreSQL", "NoSQL", "MongoDB", "Redis"]
+		},
+		{
+			"name": "Testing",
+			"keywords": [
+				"JUnit",
+				"TestNG",
+				"AssertJ",
+				"Mokito",
+				"Spring Boot Test",
+				"Jasmine",
+				"Jest",
+				"Postman",
+				"TDD"
+			]
+		},
+
+		{
+			"name": "Collaboration",
+			"keywords": ["Git", "Agile", "Jira", "Teams", "Zoom", "Slack"]
+		},
+		{
+			"name": "OS",
+			"keywords": ["Linux", "MacOS", "Windows"]
+		},
+		{
+			"name": "Misc",
+			"keywords": ["Kafka", "Rocket MQ","Regex", "Markdown", "MDX", "CLI"]
+		}
+	],
+	"languages": [
+		{
+			"language": "Chinese",
+			"fluency": "Native speaker"
+		},
+		{
+			"language": "English",
+			"fluency": "Professional working proficient"
+		},
+		{
+			"language": "Cantonese",
+			"fluency": "Native speaker"
+		}
+	],
+	"interests": [
+		{
+			"name": "Hiking"
+		},
+		{
+			"name": "Running"
+		},
+		{
+			"name": "Reading"
+		}
+	]
+}

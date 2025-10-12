@@ -1,0 +1,357 @@
+name: CICD
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "The tag to be released."
+        type: string
+        required: true
+      color:
+        description: "The data-theme to be used. For example: default, red, blue, green"
+        type: string
+        required: false
+      tracking:
+        description: "The tracking value"
+        type: string
+        required: false
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+env:
+  BUILD_PATH: "."
+  TAG: ${{ inputs.tag }}
+  COLOR: ${{ inputs.color }}
+  TRACKING: ${{ inputs.tracking }}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub Context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Detect package manager
+        id: detect-package-manager
+        run: |
+          if [ -f "${{ github.workspace }}/pnpm-lock.yaml" ]; then
+            echo "manager=pnpm" >> $GITHUB_OUTPUT
+            echo "command=install" >> $GITHUB_OUTPUT
+            echo "runner=pnpx" >> $GITHUB_OUTPUT
+            exit 0
+          elif [ -f "${{ github.workspace }}/yarn.lock" ]; then
+            echo "manager=yarn" >> $GITHUB_OUTPUT
+            echo "command=install" >> $GITHUB_OUTPUT
+            echo "runner=yarn" >> $GITHUB_OUTPUT
+            echo "lockfile=yarn.lock" >> $GITHUB_OUTPUT
+            exit 0
+          elif [ -f "${{ github.workspace }}/package.json" ]; then
+            echo "manager=npm" >> $GITHUB_OUTPUT
+            echo "command=ci" >> $GITHUB_OUTPUT
+            echo "runner=npx --no-install" >> $GITHUB_OUTPUT
+            echo "lockfile=package-lock.json" >> $GITHUB_OUTPUT
+            exit 0
+          else
+            echo "Unable to determine package manager"
+            exit 1
+          fi
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "23"
+          cache: ${{ steps.detect-package-manager.outputs.manager }}
+      - name: Restore cache
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-astro
+        with:
+          path: |
+            ./node_modules/.astro
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json', '**/yarn.lock', '**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx', '**.astro') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            ${{ runner.os }}-${{ hashFiles('**/package-lock.json', '**/yarn.lock', '**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx', '**.astro') }}
+            ${{ runner.os }}-${{ hashFiles('**/package-lock.json', '**/yarn.lock', '**/pnpm-lock.yaml') }}-
+            ${{ runner.os }}-
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Install dependencies
+        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+        working-directory: ${{ env.BUILD_PATH }}
+
+      - name: Setup environment variables
+        run: |
+          echo "PUBLIC_DOMAIN=${{ vars.PUBLIC_DOMAIN }}" >> .env.production
+          echo "PUBLIC_BASE_PATH=${{ vars.PUBLIC_BASE_PATH }}" >> .env.production
+          echo "PUBLIC_GA_ID=${{ vars.PUBLIC_GA_ID }}" >> .env.production
+          echo "PUBLIC_TIME=${{ vars.PUBLIC_TIME }}" >> .env.production
+
+      - name: Generate Markmap
+        run: |
+          ${{ steps.detect-package-manager.outputs.manager }} run gen-markmap
+
+      - name: Build with Astro
+        run: |
+          ${{ steps.detect-package-manager.outputs.manager }} run astro build \
+            --site "${{ steps.pages.outputs.origin }}" \
+            --base "${{ steps.pages.outputs.base_path }}"
+        working-directory: ${{ env.BUILD_PATH }}
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.BUILD_PATH }}/dist
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "23"
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: |
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json', '**/yarn.lock', '**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx', '**.astro') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json', '**/yarn.lock', '**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx', '**.astro') }}
+            ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json', '**/yarn.lock', '**/pnpm-lock.yaml') }}-
+            ${{ runner.os }}-playwright-
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install --with-deps chromium
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+
+      - name: "Setup customize data: color, url"
+        if: inputs.color != ''
+        run: |
+          sed -i 's|http://localhost:4321|http://localhost:4321/?color=${{ env.COLOR }}|g' e2e/generate-pdf.spec.ts
+          mv cv.json cv-origin.json
+          jq '.basics.url += "/?color=${{ env.COLOR }}&utm_medium=pdf&utm_id=${{ env.TRACKING }}" | .basics.website += "/?color=${{ env.COLOR }}&utm_medium=pdf&utm_id=${{ env.TRACKING }}" | .basics.profiles |= map(.url += "?utm_source=pdf&utm_id=${{ env.TRACKING }}")' cv-origin.json > cv.json
+
+      - name: Run Playwright tests
+        run: pnpm exec playwright test
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-result
+          path: playwright-result/
+          retention-days: 30
+
+  release:
+    environment:
+      name: release
+      url: https://github.com/${{ github.repository }}/releases/tag/${{ inputs.tag && inputs.tag || steps.next-version.outputs.version }}
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    name: Release
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    outputs:
+      is_new_version: ${{ steps.bump_version.outputs.is_new_version }}
+    steps:
+      # Use GitHub App Token so workflow can push to main which is protected via rule "- Changes must be made through a pull request."
+      - name: Create GitHub App Token
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: tree:0
+          token: ${{ steps.app-token.outputs.token }}
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "23"
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Setup Git user for Bot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Get release context
+        id: next-version
+        run: |
+          echo "NEXT_VERSION=$(pnpm exec git-cliff --bumped-version)" >> $GITHUB_ENV
+          echo "version=$(pnpm exec git-cliff --bumped-version)" >> $GITHUB_OUTPUT
+
+      - name: Bump version in code and bump tag for any code push in main (a PR merged, or any push)
+        if: github.ref == 'refs/heads/main'
+        id: bump_version
+        run: |
+          CUR_VERSION="v"$(jq -r '.version' package.json)
+          echo "\$CUR_VERSION: $CUR_VERSION"
+
+          if [[ "$CUR_VERSION" != "$NEXT_VERSION" ]]; then
+            echo "IS_NEW_VERSION=true" >> "$GITHUB_ENV"
+            echo "is_new_version=true" >> "$GITHUB_OUTPUT"
+            echo "\$GITHUB_OUTPUT: $GITHUB_OUTPUT"
+            pnpm run release
+          fi
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+
+      - name: Extract downloaded artifact and compress extracted files
+        run: |
+          mkdir dist
+          tar xf artifact.tar --directory=dist
+          tar czf github-pages.tar.gz --directory=dist .
+      - uses: actions/download-artifact@v4
+        with:
+          name: playwright-result
+
+      - name: Get context
+        run: |
+          # UTC time - ISO 8601
+          echo "DATE_AND_TIME=$(date -u +%Y-%m-%dT%H:%M:%S%Z)" >> $GITHUB_ENV
+
+          # Date - ISO 8601
+          echo "DATE=$(date +%Y-%m-%d)" >> $GITHUB_ENV
+
+          # First 7 characters of SHA, matched with GitHub
+          SHA=${{ github.sha }}
+          echo "SHA=${SHA:0:7}" >> $GITHUB_ENV
+
+      - name: Get current tag changelog
+        run: |
+          pnpm run --silent get-latest-tag-changelog-diff > CURRENT_CHANGELOG.md
+          RUN_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          printf "\n\n---\n\nReleased at [${{ env.DATE_AND_TIME }}]($RUN_URL)" >> CURRENT_CHANGELOG.md
+
+      - name: Add version as suffix to artifacts
+        run: |
+          cp CV.pdf "CV-${{ env.TAG || env.NEXT_VERSION }}-${{ env.DATE }}.pdf"
+          cp github-pages.tar.gz "github-pages-${{ env.TAG || env.NEXT_VERSION }}-${{ env.DATE }}.tar.gz"
+
+      - name: Release artifact
+        id: release-artifact
+        if: ${{ env.TAG || env.IS_NEW_VERSION }}
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "${{ env.TAG || env.NEXT_VERSION }} — ${{ env.DATE }}"
+          files: |
+            github-pages-*.tar.gz
+            CV-*.pdf
+          make_latest: "${{ github.ref == 'refs/heads/main' && !env.TAG }}"
+          body_path: CURRENT_CHANGELOG.md
+          tag_name: ${{ env.TAG || env.NEXT_VERSION }}
+
+      # Copy CV to astro build output
+      - name: Upload artifact with PDF
+        run: |
+          cp CV.pdf dist/DathengWang-CV.pdf
+
+      # Reupload github-pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.BUILD_PATH }}/dist
+          name: github-pages-with-cv
+
+      - name: Dumb env
+        run: echo '${{ toJSON(env) }}'
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: Dump job context
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: echo "$JOB_CONTEXT"
+      - name: Dump steps context
+        env:
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: echo "$STEPS_CONTEXT"
+      - name: Dump runner context
+        env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
+        run: echo "$RUNNER_CONTEXT"
+      - name: Dump strategy context
+        env:
+          STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+        run: echo "$STRATEGY_CONTEXT"
+      - name: Dump matrix context
+        env:
+          MATRIX_CONTEXT: ${{ toJson(matrix) }}
+        run: echo "$MATRIX_CONTEXT"
+
+  # Continuous Deployment: Any changes to main branch will be deploy
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: release
+    if: github.ref == 'refs/heads/main' && needs.release.outputs.is_new_version
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-with-cv

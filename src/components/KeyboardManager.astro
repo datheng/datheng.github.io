@@ -1,0 +1,318 @@
+---
+import "hotkeypad/reset.css";
+import "hotkeypad/index.css";
+import { type SocialIcon } from "@/types";
+import { basics, projects, certificates } from "@cv";
+import "../styles/global.css";
+import { Icon } from "astro-icon/components";
+import { SOCIALS } from "@/constants/social-names";
+
+const { profiles } = basics;
+
+const SOCIAL_ICONS: SocialIcon = {
+	GitHub: `<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="margin-right: 0px" ><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" ></path></svg >`,
+	LinkedIn: `<svg height="16" width="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="margin-right: 0px" ><title>LinkedIn</title><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" ></path></svg >`,
+	X: `<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="margin-right: 0px" ><title>X</title><path fill="currentColor" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" ></path></svg >`,
+};
+
+const iconProject =
+	"<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-folder size-4' > <path d='M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z' /> </svg>";
+const iconEmpty = "<svg width='24' height='24' viewBox='0 0 24 24'></svg>";
+
+const profilesInfo = profiles
+	.filter(
+		(item) => !["cv", "mindmap", "website"].includes(item.network.toLowerCase())
+	)
+	.map(({ network, url }, idx) => {
+		const icon = SOCIAL_ICONS[network] || iconEmpty;
+		const firstLetter = network[0].toUpperCase();
+
+		return {
+			id: network,
+			section: "Socials",
+			title: `Visit ${network}`,
+			url,
+			icon,
+			hotkey: `ctrl+${idx + 1}`,
+		};
+	});
+
+const projectsInfo = projects.map(({ name, url, iconSearch }, idx) => {
+	return {
+		id: name,
+		section: "Projects",
+		title: `Visit ${name}`,
+		icon: iconSearch || iconProject,
+		url,
+		hotkey: `ctrl+${profilesInfo.length + idx + 1}`,
+	};
+});
+
+const githubInfo = profiles.find(
+	({ network }) => network?.toLowerCase() === SOCIALS.GitHub
+);
+const githubUrl = githubInfo?.projects || githubInfo?.url;
+const moreProjects = {
+	id: "more-projects",
+	section: "Projects",
+	title: `Visit more projects`,
+	icon: iconEmpty,
+	url: githubUrl,
+	hotkey: `ctrl+${profilesInfo.length + projectsInfo.length + 1}`,
+};
+
+const certsInfo = certificates
+	.filter((item) => item.url)
+	.map(({ name, url, iconSearch }, idx) => {
+		return {
+			id: name,
+			section: "Certificates",
+			title: `Visit ${name}`,
+			icon: iconSearch,
+			url,
+			hotkey: `ctrl+${profilesInfo.length + projectsInfo.length + idx + 2}`,
+		};
+	});
+
+// TODO: fix hotkeypad item not in view on focused
+// items[this.currentIndex].removeAttribute("data-active");
+// items[nextIndex].setAttribute("data-active", "");
+// items[nextIndex].scrollIntoView({ behavior: "smooth" });
+---
+
+<footer id="normal-footer" class="no-print z-20 flex flex-col gap-2">
+	<div class="flex items-center justify-center gap-2">
+		Press <kbd>Cmd/Ctrl</kbd> + <kbd>K</kbd> to open the command palette.
+	</div>
+</footer>
+
+{/* Wrap in a div to not populate the markup */}
+<div>
+	<Icon
+		name="mdi:apple-keyboard-command"
+		class="footer-button no-print z-30 h-8 w-8 p-2 text-black"
+	/>
+	<div
+		id="hotkeypad"
+		data-placeholder="Search - e.g. GitHub, AWS"
+		data-info={JSON.stringify([
+			...profilesInfo,
+			...projectsInfo,
+			moreProjects,
+			...certsInfo,
+		])}
+	>
+	</div>
+</div>
+
+<script>
+	interface Info {
+		id: string;
+		section: string;
+		title: string;
+		url: string;
+		icon: string;
+		hotkey: string;
+		handler?: () => void;
+	}
+
+	import HotKeyPad from "hotkeypad";
+
+	const hotkeypad = new HotKeyPad();
+	const info = hotkeypad.instance.getAttribute("data-info") ?? "[]";
+	const parsedInfo = JSON.parse(info) as Info[];
+
+	const data = parsedInfo.map(({ url, hotkey, icon, id, section, title }) => {
+		return {
+			id,
+			title,
+			icon,
+			hotkey,
+			section,
+			handler: () => {
+				const w = window.open(url, "_blank"); // Open in a new tab
+
+				// Safari on iOS devices that block popup don't have access to window object
+				if (!w) {
+					// Create an anchor element and programmatically click it
+					if (!document) {
+						return;
+					}
+					const link = document.createElement("a");
+					link.href = url;
+					link.target = "_blank"; // Open in a new tab
+					link.click();
+				}
+			},
+		};
+	});
+	hotkeypad.setCommands([
+		{
+			id: "print",
+			title: "Print this website as CV",
+			icon: `<svg style="margin-right: 0px" width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z" /> </svg>`,
+			hotkey: "ctrl+P",
+			section: "Actions",
+			handler: () => {
+				window.print();
+			},
+		},
+		{
+			id: "download",
+			title: "Download CV",
+			icon: `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="-32 0 512 512"><path fill="currentColor" d="M48 32C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm98.88 133.234c19.636 0 37.082 6.789 49.929 16.971c11.88 9.452 17.444 18.907 22.298 27.393l-33.923 16.949c-2.427-5.565-5.347-11.387-12.846-17.682c-8.248-6.552-16.478-8.484-23.524-8.484c-27.626 0-42.17 25.693-42.17 54.287c0 37.573 19.161 56.22 42.17 56.22c22.3 0 31.278-15.51 37.08-25.435L219.6 302.66c-6.315 9.926-12.374 19.635-25.95 29.069c-7.262 5.09-23.977 15.037-47.736 15.037C100.586 346.766 64 313.81 64 255.87c0-50.636 34.415-90.637 82.88-90.637m75.483 5.328h45.565L303.31 292.24l35.125-121.678H384l-59.379 171.112H281.01z"/></svg>`,
+			hotkey: "ctrl+D",
+			section: "Actions",
+			handler: () => {
+				const w = window.open("/CV.pdf", "_blank"); // Open in a new tab
+
+				// Safari on iOS devices that block popup don't have access to window object
+				if (!w) {
+					// Create an anchor element and programmatically click it
+					if (!document) {
+						return;
+					}
+					const link = document.createElement("a");
+					link.href = "/CV.pdf";
+					link.target = "_blank"; // Open in a new tab
+					link.click();
+				}
+			},
+		},
+		{
+			id: "mindmap",
+			title: "View CV as mind map",
+			icon: `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M26 24h16M26 38h16M26 10h16M18 24H6h4m8 14c-6-2-2-14-8-14m8-14c-6 2-2 14-8 14"/></svg>`,
+			hotkey: "ctrl+M",
+			section: "Actions",
+			handler: () => {
+				const w = window.open("/mindmap", "_blank"); // Open in a new tab
+
+				// Safari on iOS devices that block popup don't have access to window object
+				if (!w) {
+					// Create an anchor element and programmatically click it
+					if (!document) {
+						return;
+					}
+					const link = document.createElement("a");
+					link.href = "/mindmap";
+					link.target = "_blank"; // Open in a new tab
+					link.click();
+				}
+			},
+		},
+		...data,
+	]);
+
+	const footerButtons = document.querySelectorAll(".footer-button");
+	footerButtons.forEach((button) => {
+		button.addEventListener("click", () => {
+			var event = new KeyboardEvent("keydown", {
+				key: "K",
+				code: "KeyK",
+				keyCode: 75,
+				which: 75,
+				ctrlKey: true,
+				altKey: false,
+				shiftKey: false,
+				metaKey: false,
+			});
+			document.dispatchEvent(event);
+		});
+	});
+</script>
+
+<style>
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	@media (min-width: 601px) {
+		.footer-button {
+			display: none;
+		}
+	}
+
+	@media (max-width: 600px) {
+		#normal-footer {
+			display: none;
+		}
+
+		.footer-button {
+			background: #fff;
+			color: hsl(var(--color-main));
+			position: fixed;
+			border: 1px solid hsl(var(--color-main));
+			right: 10px;
+			bottom: 10px;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+		}
+	}
+
+	footer {
+		@apply bg-skin-button-accent;
+		position: fixed;
+		bottom: 0px;
+		width: 100%;
+		padding-block: 8px;
+		text-align: center;
+		font-size: 0.85rem;
+
+		view-timeline-name: --revealing;
+		view-timeline-axis: block;
+
+		animation: linear 0.3s fadeIn;
+		animation-timeline: --revealing;
+		animation-range: entry 100% cover 10%;
+	}
+	kbd {
+		@apply bg-skin-muted;
+		border-radius: 4px;
+		padding: 2px 4px;
+		font-size: 12px;
+	}
+
+	#hotkeypad {
+		--hotkeypad-bg-kbd: hsl(var(--color-muted));
+		--hotkeypad-bg-backdrop: hsl(var(--color-fill));
+		--hotkeypad-bg-container: hsl(var(--color-fill));
+		--hotkeypad-bg-item-hover: hsla(var(--color-main), 50%);
+		--hotkeypad-border-container: hsl(var(--color-muted));
+		--hotkeypad-border-container-hover: hsl(var(--color-fill));
+		--hotkeypad-fg-muted: hsla(
+			var(--color-text),
+			var(--tw-text-opacity)
+		);
+		@media (prefers-color-scheme: dark) {
+			--hotkeypad-bg-kbd: hsl(var(--color-muted));
+			--hotkeypad-bg-backdrop: hsl(var(--color-fill));
+			--hotkeypad-bg-container: hsl(var(--color-fill));
+			--hotkeypad-bg-item-hover: hsla(var(--color-main), 50%);
+			--hotkeypad-border-container: hsl(var(--color-muted));
+			--hotkeypad-border-container-hover: hsl(var(--color-fill));
+			--hotkeypad-fg-muted: hsl(var(--color-text));
+		}
+	}
+
+	#hotkeypad {
+		transition: visibility 0.2s;
+	}
+
+	html.light {
+		#hotkeypad [data-container] header input,
+		#hotkeypad [data-section] h4 {
+			--hotkeypad-fg-muted: hsla(var(--color-text), 80%);
+		}
+	}
+</style>

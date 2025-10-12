@@ -1,0 +1,29 @@
+---
+import Markdown from "../Markdown.astro";
+import Section from "../Section.astro";
+
+import { basics } from "@cv";
+const { summary, summaries: s, summaries_md: s_md } = basics;
+
+const summaries = s_md || s;
+---
+
+<Section title="About">
+	{
+		(
+			<ul class="&>li]:ml-4 flex list-disc flex-col gap-2 text-xs text-skin-muted marker:text-skin-hue/80 print:text-skin-base">
+				{summaries ? (
+					summaries.map((item) => (
+						<li>
+							<Markdown inline of={item} />
+						</li>
+					))
+				) : (
+					<li>
+						<Markdown inline of={summary} />
+					</li>
+				)}
+			</ul>
+		)
+	}
+</Section>
