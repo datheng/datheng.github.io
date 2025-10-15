@@ -2,7 +2,7 @@
 
 Demo:
 
-- My portfolio/CV - [datheng.github.com](https://datheng.github.com)
+- My portfolio/CV - [datheng.github.io](https://datheng.github.io)
 
 ![preview](./docs/demo.png)
 
@@ -38,12 +38,12 @@ Demo:
 
 ### 1. Fork this repo
 
-- [Fork](https://github.com/datheng/datheng.github.com) this repo then clone your fork.
+- [Fork](https://github.com/datheng/datheng.github.io) this repo then clone your fork.
 
 - Or, use this repo as a template
 
   ```bash
-  pnpm create astro@latest -- --template datheng/datheng.github.com
+  pnpm create astro@latest -- --template datheng/datheng.github.io
   ```
 
 ### 2. Add Your Content
@@ -66,10 +66,10 @@ Demo:
   - change `basics.theme` from `default` to one of the value of: `red`, `blue`, `green`, `cyber` and `default`.
 
 > [!TIP]
-> These values `red`, `blue`, `green`, `cyber` are of the `data-theme` attribute in [`theme.css`](https://github.com/datheng/datheng.github.com/blob/main/public/themes/themes.css).
+> These values `red`, `blue`, `green`, `cyber` are of the `data-theme` attribute in [`theme.css`](https://github.com/datheng/datheng.github.io/blob/main/public/themes/themes.css).
 
 > [!NOTE]
-> You can create your own custom themes by adding your own css to [`theme.css`](https://github.com/datheng/datheng.github.com/blob/main/public/themes/themes.css).
+> You can create your own custom themes by adding your own css to [`theme.css`](https://github.com/datheng/datheng.github.io/blob/main/public/themes/themes.css).
 
 ## 🧞 Commands
 

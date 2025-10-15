@@ -3,13 +3,13 @@ Generated automated from cv.json. Don't edit.
 To update modify 'cv-to-md.ts' then run 'pnpm run gen-markmap'
 -->
 
-# [**Datheng Wang**](https://datheng.github.com) (_Full Stack Developer_)
+# [**Datheng Wang**](https://datheng.github.io) (_Full Stack Developer_)
 
 ## **Also available as**
 
-- Website: [https://datheng.github.com](https://datheng.github.com)
-- PDF: [https://datheng.github.com/CV.pdf](https://datheng.github.com/CV.pdf)
-- Mind map: [https://datheng.github.com/mindmap](https://datheng.github.com/mindmap) (You're viewing this)
+- Website: [https://datheng.github.io](https://datheng.github.io)
+- PDF: [https://datheng.github.io/DathengWang-CV.pdf](https://datheng.github.io/DathengWang-CV.pdf)
+- Mind map: [https://datheng.github.io/mindmap](https://datheng.github.io/mindmap) (You're viewing this)
 
 ## **About**
 
@@ -20,7 +20,7 @@ To update modify 'cv-to-md.ts' then run 'pnpm run gen-markmap'
 
 - Email: [wmsisme@outlook.com](mailto:wmsisme@outlook.com)
 - Phone: [+86 136 6224 2379](tel:+8613662242379)
-- Website: [https://datheng.github.com](https://datheng.github.com)
+- Website: [https://datheng.github.io](https://datheng.github.io)
 - Location: Shenzhen, Guangdong province, China
 
 ## **Profiles**
@@ -29,7 +29,7 @@ To update modify 'cv-to-md.ts' then run 'pnpm run gen-markmap'
 - LinkedIn: [datheng](https://linkedin.com/in/datheng)
 - Credly: [datheng](https://www.credly.com/users/datheng/)
 
-## [**Experience**](https://datheng.github.com#Experience)
+## [**Experience**](https://datheng.github.io#Experience)
 
 ### **Full Stack Developer** - _Inspire Lab Technology_ (2022-06 - 2023-07)
 
@@ -96,7 +96,7 @@ To update modify 'cv-to-md.ts' then run 'pnpm run gen-markmap'
 
 - Authored official **onboarding documentation** for setting up the backend environment, _streamlining the process_ for new team members.
 
-## [**Projects**](https://datheng.github.com#Projects)
+## [**Projects**](https://datheng.github.io#Projects)
 
 ### [gtdb](https://gtdb.app)
 
@@ -122,7 +122,7 @@ To update modify 'cv-to-md.ts' then run 'pnpm run gen-markmap'
 - Next.js · React · MDX · SSG
 
 
-### [Modern Minimal CV](https://datheng.github.com)
+### [Modern Minimal CV](https://datheng.github.io)
 
 #### JSON → Portfolio Website → PDF + Mind map <!-- markmap: fold -->
 
@@ -134,7 +134,7 @@ To update modify 'cv-to-md.ts' then run 'pnpm run gen-markmap'
 - Astro · React · Tailwind · Playwright
 
 
-### [AWSsome](https://datheng.github.com/awssome/)
+### [AWSsome](https://datheng.github.io/awssome/)
 
 #### Mind-maps for AWS certificates. <!-- markmap: fold -->
 
@@ -158,7 +158,7 @@ To update modify 'cv-to-md.ts' then run 'pnpm run gen-markmap'
 - Next.js · React · Tailwind · Radix UI · Zod · SPA
 
 
-## [**Skills**](https://datheng.github.com#Skills)
+## [**Skills**](https://datheng.github.io#Skills)
 
 ### **Backend**
 
@@ -196,7 +196,7 @@ To update modify 'cv-to-md.ts' then run 'pnpm run gen-markmap'
 
 - Regex · Markdown · MDX · CLI
 
-## [**Education**](https://datheng.github.com#Education)
+## [**Education**](https://datheng.github.io#Education)
 
 ### **Self-taught and continuous-improvement** - _Computer, software & DevOps_ (2023-07 - 2024-12) <!-- markmap: fold -->
 
@@ -215,7 +215,7 @@ To update modify 'cv-to-md.ts' then run 'pnpm run gen-markmap'
 
 - Programme de Formation d’Ingénieurs d’Excellence au Vietnam (P.F.I.E.V).
 
-## [**Certificates**](https://datheng.github.com#Certificates)
+## [**Certificates**](https://datheng.github.io#Certificates)
 
 ### **AWS Certified Solutions Architect – Professional** <!-- markmap: fold -->
 

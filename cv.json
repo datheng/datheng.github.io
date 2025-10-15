@@ -4,9 +4,9 @@
 		"label": "DevOps Engineer | Cloud Engineer",
 		"email": "wmsisme@outlook.com",
 		"phone": "+86 13662242379",
-		"website": "https://datheng.github.com",
-		"url": "https://datheng.github.com",
-		"urlLastUpdated": "https://github.com/datheng/datheng.github.com/releases",
+		"website": "https://datheng.github.io",
+		"url": "https://datheng.github.io",
+		"urlLastUpdated": "https://github.com/datheng/datheng.github.io/releases",
 		"picture-TODO": "",
 		"picture": "",
 		"image": "",
@@ -43,17 +43,17 @@
 			},
 			{
 				"network": "Website",
-				"username": "datheng.github.com"
+				"username": "datheng.github.io"
 			},
 			{
 				"network": "CV",
 				"username": "CV",
-				"url": "https://datheng.github.com/DathengWang-CV.pdf"
+				"url": "https://datheng.github.io/DathengWang-CV.pdf"
 			},
 			{
 				"network": "Mindmap",
 				"username": "mindmap",
-				"url": "https://datheng.github.com/mindmap"
+				"url": "https://datheng.github.io/mindmap"
 			}
 		]
 	},
