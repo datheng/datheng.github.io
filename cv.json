@@ -271,7 +271,7 @@
 				"Deploying Kubernetes on-premises offers significant benefits in terms of security, compliance, and cost-effectiveness but also presents challenges in scalability, management complexity, and networking."
 			],
 			"startDate": "2023-06",
-			"url": "",
+			"url": "https://k8s.it-bang.cn/",
 			"isActive": true,
 			"skills": ["Kubernetes", "Bare-Metal", "GlusterFS","Storage-NFS", "Storage-SMB",  "metallb", "cert-manager", "harbor", "ingress-nginx", "prometheus", "grafana", "OpenTelemetry", "fluentd"],
 			"hidden": false
