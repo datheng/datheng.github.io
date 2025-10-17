@@ -164,7 +164,7 @@ const certsInfo = certificates
 			hotkey: "ctrl+D",
 			section: "Actions",
 			handler: () => {
-				const w = window.open("/CV.pdf", "_blank"); // Open in a new tab
+				const w = window.open("/DathengWang-CV.pdf", "_blank"); // Open in a new tab
 
 				// Safari on iOS devices that block popup don't have access to window object
 				if (!w) {
@@ -173,7 +173,7 @@ const certsInfo = certificates
 						return;
 					}
 					const link = document.createElement("a");
-					link.href = "/CV.pdf";
+					link.href = "/DathengWang-CV.pdf";
 					link.target = "_blank"; // Open in a new tab
 					link.click();
 				}
