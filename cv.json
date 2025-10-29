@@ -256,7 +256,26 @@
 		}
 	],
 	"certificates": [
-
+		{
+			"name": "Alibaba Cloud Certified Associate - Cloud Computing",
+			"issuer": "Alibaba Cloud",
+			"date": "2025-10"
+		},
+		{
+			"name": "Clound Native Container Clouder",
+			"issuer": "Alibaba Cloud",
+			"date": "2025-10"
+		},
+		{
+			"name": "Elastic Computing Clouder",
+			"issuer": "Alibaba Cloud",
+			"date": "2025-10"
+		},
+		{
+			"name": "ISO 27001 Auditor",
+			"issuer": "HKQAA",
+			"date": "2011-06"
+		},
 		{
 			"name": "MCSE",
 			"issuer": "Microsoft",
