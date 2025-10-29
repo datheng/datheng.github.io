@@ -134,7 +134,7 @@
 				"OpenTelemetry",
 				"Grafana",
 				"Azure Cloud",
-				"AliYun Cloud",
+				"Alibaba Cloud",
 				"AWS",
 				"EKS",
 				"Jenkins",
@@ -305,7 +305,7 @@
 			"url": "",
 			"isActive": true,
 			"skills": [
-				"AliYun Cloud",
+				"Alibaba Cloud",
 				"Spring AI",
 				"Spring AI Alibaba",
 				"Agent",
@@ -416,7 +416,7 @@
 				"AWS",
 				"Google Cloud",
 				"Azure Cloud",
-				"AliYun",
+				"Alibaba Cloud",
 				"Huawei Cloud"
 			]
 		},
