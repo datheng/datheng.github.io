@@ -257,6 +257,11 @@
 	],
 	"certificates": [
 		{
+			"name": "Alibaba Cloud Certified Professional - Cloud Computing",
+			"issuer": "Alibaba Cloud",
+			"date": "2025-11"
+		},
+		{
 			"name": "Alibaba Cloud Certified Associate - Cloud Computing",
 			"issuer": "Alibaba Cloud",
 			"date": "2025-10"
