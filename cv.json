@@ -257,6 +257,11 @@
 	],
 	"certificates": [
 		{
+			"name": "Certified Kubernetes Administrator (CKA)",
+			"issuer": "CNCF",
+			"date": "2025-11"
+		},
+		{
 			"name": "Alibaba Cloud Certified Professional - Cloud Computing",
 			"issuer": "Alibaba Cloud",
 			"date": "2025-11"
