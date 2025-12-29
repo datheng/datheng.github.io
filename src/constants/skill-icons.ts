@@ -2,6 +2,7 @@ export const SKILLS_ICONS: Record<string, { iconName: string }> = {
 	"Ant Design": { iconName: "logos:ant-design" },
 	Astro: { iconName: "logos:astro" },
 	AWS: { iconName: "skill-icons:aws-dark" },
+	CKA: {iconName: "skill-icons:kubernetes"},
 	"Bash Script": { iconName: "skill-icons:bash-dark" },
 	BigQuery: { iconName: "bigquery" },
 	BloomRPC: { iconName: "bloomrpc" },
